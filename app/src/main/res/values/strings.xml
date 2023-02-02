@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">WingsSale</string>
+    <string name="login_title">Login</string>
+    <string name="username_ivhint">Username</string>
+    <string name="password_ivhint">Password</string>
+    <string name="login_btntext">Login</string>
+    <string name="dummy_prodname">Dummy_ProductName</string>
+    <string name="dummy_prodrealprice"><s>Rp X.XXX,-</s></string>
+    <string name="dummy_proddiscprice">Rp Y.YYY,-</string>
+    <string name="buy_btntext">Buy</string>
+    <string name="checkout_btntext">Checkout</string>
 </resources>
