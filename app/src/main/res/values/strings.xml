@@ -5,7 +5,7 @@
     <string name="password_ivhint">Password</string>
     <string name="dummy_prodname">Dummy_ProductName</string>
     <string name="dummy_prodrealprice">Rp X.XXX,-</string>
-    <string name="dummy_proddiscprice">Rp Y.YYY,-</string>
+    <string name="dummy_proddiscprice"><strike>Rp Y.YYY,-</strike></string>
     <string name="buy_btntext">BUY</string>
     <string name="checkout_btntext">CHECKOUT</string>
 </resources>
