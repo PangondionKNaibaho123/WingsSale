@@ -1,10 +1,12 @@
 package com.pangondionkn.wingssale.model.data_local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.pangondionkn.wingssale.model.data_class.Login
+import com.pangondionkn.wingssale.model.data_class.Product
 
 @Dao
 interface LoginDao {
@@ -18,8 +20,16 @@ interface LoginDao {
     fun removeAllUser()
 }
 
+@Dao
 interface ProductDao{
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addProduct(listProduct: List<Product>)
 
+    @Query("SELECT * FROM Product")
+    fun getAllProduct(): LiveData<List<Product>>
+
+    @Query("DELETE FROM Product")
+    fun removeAllProduct()
 }
 
 interface TransactionHeaderDao{

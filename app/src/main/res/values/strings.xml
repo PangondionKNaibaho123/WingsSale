@@ -6,6 +6,12 @@
     <string name="dummy_prodname">Dummy_ProductName</string>
     <string name="dummy_prodrealprice">Rp X.XXX,-</string>
     <string name="dummy_proddiscprice"><strike>Rp Y.YYY,-</strike></string>
+    <string name="dummy_proddiscprice_e1"><strike>Rp %d,-</strike></string>
     <string name="buy_btntext">BUY</string>
     <string name="checkout_btntext">CHECKOUT</string>
+    <string name="price_title">Price</string>
+    <string name="dimension_title">Dimension</string>
+    <string name="dummy_proddimension">a cm X b cm</string>
+    <string name="unit_title">Price Unit</string>
+    <string name="dummy_produnit">PCS</string>
 </resources>

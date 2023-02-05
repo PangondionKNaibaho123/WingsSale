@@ -8,6 +8,8 @@ import com.pangondionkn.wingssale.R
 import com.pangondionkn.wingssale.databinding.ActivityLoginBinding
 import com.pangondionkn.wingssale.model.data_class.Login
 import com.pangondionkn.wingssale.model.data_dummy.Dummy_Data.getDummyUser
+import com.pangondionkn.wingssale.model.data_dummy.Dummy_Data.getListDummyProduct
+import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
 import com.pangondionkn.wingssale.viewmodel.LoginViewModel
 import kotlin.math.log
 
@@ -17,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var listProductViewModel: ListProductViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        listProductViewModel = ViewModelProvider(this).get(ListProductViewModel::class.java)
 
         addDummyUser()
 
@@ -48,9 +52,11 @@ class LoginActivity : AppCompatActivity() {
             when(result != 0){
                 true -> {
                     Log.d(TAG, "Login Sukses")
+                    listProductViewModel.addProduct(getListDummyProduct())
                     startActivity(
                         ListProductActivity.newIntent(this, deliveredUsername.toString())
                     )
+                    finish()
                 }
                 else -> {
                     Log.d(TAG, "Login Gagal")

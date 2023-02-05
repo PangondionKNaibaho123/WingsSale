@@ -3,6 +3,7 @@ package com.pangondionkn.wingssale.model.data_class
 import android.os.Parcelable
 import androidx.annotation.Size
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import com.google.gson.annotations.SerializedName
 
@@ -12,6 +13,7 @@ import com.google.gson.annotations.SerializedName
 data class Product(
     @field:SerializedName("Product Code")
     @field:Size(max = 18L)
+    @PrimaryKey(autoGenerate = false)
     var product_code: String = "",
 
     @field:SerializedName("Product Name")
