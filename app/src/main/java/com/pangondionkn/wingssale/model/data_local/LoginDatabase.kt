@@ -22,7 +22,7 @@ abstract class LoginDatabase: RoomDatabase() {
                         context.applicationContext,
                         LoginDatabase::class.java,
                         "Login"
-                    ).build()
+                    ).allowMainThreadQueries().build()
                 }
             }
             return INSTANCE

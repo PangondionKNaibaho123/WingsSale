@@ -27,7 +27,9 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun checkUserLogin(deliveredUser: String, deliveredPassword: String) = loginDao?.checkUserLogin(deliveredUser, deliveredPassword)
+//    fun checkUserLogin(deliveredUser: String, deliveredPassword: String) = loginDao?.checkUserLogin(deliveredUser, deliveredPassword)
+
+    fun getResultCheckUserLogin(deliveredUser: String, deliveredPassword: String): Int? = loginDao?.checkUserLogin(deliveredUser, deliveredPassword)
 
     fun removeAllUserLogin() = loginDao?.removeAllUser()
 }

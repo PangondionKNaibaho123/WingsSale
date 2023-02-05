@@ -11,8 +11,8 @@ interface LoginDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addUserLogin(userLogin: Login)
 
-    @Query("SELECT * FROM Login WHERE user LIKE :deliveredUser AND password LIKE :deliveredPassword")
-    fun checkUserLogin(deliveredUser: String, deliveredPassword: String): Login
+    @Query("SELECT COUNT(*) FROM Login WHERE user LIKE :deliveredUser AND password LIKE :deliveredPassword")
+    fun checkUserLogin(deliveredUser: String, deliveredPassword: String): Int
 
     @Query("DELETE FROM Login")
     fun removeAllUser()
