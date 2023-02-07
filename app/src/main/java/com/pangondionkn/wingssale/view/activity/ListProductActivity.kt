@@ -13,6 +13,7 @@ import com.pangondionkn.wingssale.model.data_class.ProductnAmount
 import com.pangondionkn.wingssale.model.data_class.TransactionDetail
 import com.pangondionkn.wingssale.view.adapter.ListProductAdapter
 import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
+import com.pangondionkn.wingssale.viewmodel.TransactionDetailViewModel
 
 class ListProductActivity : AppCompatActivity() {
     private val TAG = ListProductActivity::class.java.simpleName
@@ -24,6 +25,7 @@ class ListProductActivity : AppCompatActivity() {
     private var listPurchasedProducts: ArrayList<TransactionDetail> = ArrayList()
 
     private lateinit var listProductViewModel: ListProductViewModel
+    private lateinit var transactionDetailViewModel: TransactionDetailViewModel
 
     companion object{
         const val EXTRA_USER = "EXTRA_USER"
@@ -38,6 +40,7 @@ class ListProductActivity : AppCompatActivity() {
         supportActionBar?.hide()
         deliveredUser = intent.getStringExtra(EXTRA_USER) as String
         listProductViewModel = ViewModelProvider(this)[ListProductViewModel::class.java]
+        transactionDetailViewModel = ViewModelProvider(this)[TransactionDetailViewModel::class.java]
         setUpView()
     }
 
@@ -105,7 +108,10 @@ class ListProductActivity : AppCompatActivity() {
                 rvListProduct.adapter = adapter
 
                 binding.btnCheckoutProduct.setOnClickListener {
-                    
+                    transactionDetailViewModel.addListTransactionDetail(listPurchasedProducts)
+                    startActivity(
+                        CheckoutActivity.newIntent(this@ListProductActivity, deliveredUser)
+                    )
                 }
             }
         }

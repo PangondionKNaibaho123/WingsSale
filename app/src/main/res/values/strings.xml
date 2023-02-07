@@ -15,4 +15,6 @@
     <string name="unit_title">Price Unit</string>
     <string name="dummy_produnit">PCS</string>
     <string name="dummy_prodamount">Z</string>
+    <string name="btntext_confirm_purchase">CONFIRM</string>
+    <string name="tv_subtotalTitle">Sub Total :</string>
 </resources>

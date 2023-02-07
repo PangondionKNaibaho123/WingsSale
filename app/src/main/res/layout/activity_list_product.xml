@@ -14,29 +14,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btn_checkoutProduct"
-        tools:listitem="@layout/rv_itemproduct"/>
+        app:layout_constraintBottom_toTopOf="@+id/btn_checkoutProduct"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_checkoutProduct"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/bg_blue_outline_blue"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:text="@string/checkout_btntext"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/bg_blue_outline_blue"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:text="@string/checkout_btntext"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

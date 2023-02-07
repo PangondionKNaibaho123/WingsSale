@@ -23,4 +23,6 @@ class ListProductViewModel(application: Application):AndroidViewModel(applicatio
     }
 
     fun getListProducts(): LiveData<List<Product>>? = productDao?.getAllProduct()
+
+    fun getProductName(productCode: String): String? = productDao?.getProductName(productCode)
 }

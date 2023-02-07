@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_imgPurchase"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@color/blue_100"/>
+
+    <TextView
+        android:id="@+id/tv_namePurchased"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="-5dp"
+        app:layout_constraintTop_toTopOf="@+id/iv_imgPurchase"
+        app:layout_constraintStart_toEndOf="@+id/iv_imgPurchase"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="@string/dummy_prodname"/>
+
+    <TextView
+        android:id="@+id/tv_amountPurchased"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_namePurchased"
+        app:layout_constraintTop_toBottomOf="@+id/tv_namePurchased"
+        android:background="@drawable/bg_white_outline_black_square"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="@string/dummy_prodamount"/>
+
+    <TextView
+        android:id="@+id/tv_UnitPurchased"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@id/tv_amountPurchased"
+        app:layout_constraintTop_toTopOf="@+id/tv_amountPurchased"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_amountPurchased"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="@string/dummy_produnit"/>
+
+    <TextView
+        android:id="@+id/tv_subtotalTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_namePurchased"
+        app:layout_constraintTop_toBottomOf="@+id/tv_amountPurchased"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:text="@string/tv_subtotalTitle"/>
+
+    <TextView
+        android:id="@+id/tv_subTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_subtotalTitle"
+        app:layout_constraintTop_toTopOf="@+id/tv_subtotalTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_subtotalTitle"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="@string/dummy_prodrealprice"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

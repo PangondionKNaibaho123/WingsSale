@@ -29,6 +29,9 @@ interface ProductDao{
     @Query("SELECT * FROM Product")
     fun getAllProduct(): LiveData<List<Product>>
 
+    @Query("SELECT product_name FROM Product WHERE product_code = :productCode")
+    fun getProductName(productCode: String): String
+
     @Query("DELETE FROM Product")
     fun removeAllProduct()
 }
@@ -39,8 +42,8 @@ interface TransactionHeaderDao{
 
 @Dao
 interface TransactionDetailDao{
-    @Insert
-    fun addTransactionDetail(listTransactionDetail: List<TransactionDetail>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addTransactionDetail(listTransactionDetail: ArrayList<TransactionDetail>)
 
     @Query("SELECT * FROM `Transaction Detail`")
     fun getListTransactionDetail(): LiveData<List<TransactionDetail>>

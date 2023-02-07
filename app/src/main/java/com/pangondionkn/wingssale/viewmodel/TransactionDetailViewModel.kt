@@ -1,6 +1,7 @@
 package com.pangondionkn.wingssale.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.pangondionkn.wingssale.model.data_class.TransactionDetail
@@ -17,7 +18,8 @@ class TransactionDetailViewModel(application: Application): AndroidViewModel(app
         transactionDetailDao = transactionDetailDB?.transactionDetailDao()
     }
 
-    fun addListTransactionDetail(listTransDetail: List<TransactionDetail>){
+    fun addListTransactionDetail(listTransDetail: ArrayList<TransactionDetail>){
+        Log.d(TAG, "Adding to Purchased...")
         transactionDetailDao?.addTransactionDetail(listTransDetail)
     }
 
