@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginVertical="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -23,6 +24,7 @@
         app:layout_constraintTop_toTopOf="@+id/iv_imgproduct"
         app:layout_constraintStart_toEndOf="@+id/iv_imgproduct"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:text="@string/dummy_prodname"/>
 
     <TextView
@@ -34,7 +36,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_nameproduct"
         app:layout_constraintStart_toEndOf="@+id/iv_imgproduct"
         android:textSize="14sp"
+        android:textColor="@color/black"
         android:text="@string/dummy_proddiscprice"/>
+
+    <TextView
+        android:id="@+id/tv_amountProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nameproduct"
+        app:layout_constraintBottom_toTopOf="@+id/tv_pricediscproduct"
+        android:visibility="invisible"
+        tools:visibility = "visible"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:text="@string/dummy_prodamount"/>
 
     <TextView
         android:id="@+id/tv_pricediscproduct"
@@ -45,9 +62,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_pricerealproduct"
         app:layout_constraintStart_toEndOf="@+id/iv_imgproduct"
         android:textSize="17sp"
+        android:textColor="@color/black"
         android:text="@string/dummy_prodrealprice"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_buyProduct"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_marginStart="30dp"

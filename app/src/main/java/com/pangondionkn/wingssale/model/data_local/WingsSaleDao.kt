@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.pangondionkn.wingssale.model.data_class.Login
 import com.pangondionkn.wingssale.model.data_class.Product
+import com.pangondionkn.wingssale.model.data_class.TransactionDetail
 
 @Dao
 interface LoginDao {
@@ -36,6 +37,11 @@ interface TransactionHeaderDao{
 
 }
 
+@Dao
 interface TransactionDetailDao{
+    @Insert
+    fun addTransactionDetail(listTransactionDetail: List<TransactionDetail>)
 
+    @Query("SELECT * FROM `Transaction Detail`")
+    fun getListTransactionDetail(): LiveData<List<TransactionDetail>>
 }

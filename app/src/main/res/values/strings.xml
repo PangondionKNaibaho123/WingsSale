@@ -14,4 +14,5 @@
     <string name="dummy_proddimension">a cm X b cm</string>
     <string name="unit_title">Price Unit</string>
     <string name="dummy_produnit">PCS</string>
+    <string name="dummy_prodamount">Z</string>
 </resources>

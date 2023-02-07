@@ -9,46 +9,72 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pangondionkn.wingssale.R
 import com.pangondionkn.wingssale.databinding.RvItemproductBinding
 import com.pangondionkn.wingssale.model.data_class.Product
+import com.pangondionkn.wingssale.model.data_class.ProductnAmount
 import com.pangondionkn.wingssale.view.activity.ListProductActivity
 
 class ListProductAdapter(
-    var data: ArrayList<Product>?= null,
+    var data: ArrayList<ProductnAmount>?= null,
     private val listener: ItemListener?= null
 ): RecyclerView.Adapter<ListProductAdapter.ItemHolder>() {
 
     private val TAG = ListProductAdapter::class.java.simpleName
 
+    private var amountProduct = 0
+    private var indexProduct = 0
+
     interface ItemListener{
-        fun onItemClicked(item: Product)
+        fun onItemClicked(item: Product, index: Int)
+        fun addItemtoList(item:Product){}
+        fun onItemPurchased(item: Product,index: Int, amount: Int)
+//        fun onItemAmountAdded(item: Product)
+    }
+
+    fun getAmount(): Int{
+        return amountProduct
+    }
+
+    fun getIndex():Int{
+        return indexProduct
     }
 
     inner class ItemHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bind(item: Product, listener: ItemListener) = with(itemView){
+//        fun addAmountfromDetail(item:Product) = with(itemView){
+//            val binding = RvItemproductBinding.bind(itemView)
+//            amountProduct++
+//            binding.tvAmountProduct.text = amountProduct.toString()
+//            binding.tvAmountProduct.visibility = View.VISIBLE
+//        }
+
+        fun bind(item: ProductnAmount, listener: ItemListener) = with(itemView){
             val binding = RvItemproductBinding.bind(itemView)
             binding.apply {
-                tvNameproduct.text = item.product_name
-//                tvPricerealproduct.text = item.price.toString()
-//
-//                val discPrice = (100-item.discount)/100 * item.price
-//
-//                tvPricediscproduct.text = discPrice.toString()
+                tvNameproduct.text = item.product.product_name
 
-                when(item.discount == 0){
+                when(item.product.discount == 0){
                     true ->{
                         tvPricerealproduct.visibility = View.GONE
-                        tvPricediscproduct.text = "Rp ${item.price},-"
+                        tvPricediscproduct.text = "Rp ${item.product.price},-"
                     }
                     else ->{
                         tvPricerealproduct.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                        tvPricerealproduct.text = "Rp ${item.price},-"
-                        val discPrice = (100-(item.discount)) * item.price / 100
+                        tvPricerealproduct.text = "Rp ${item.product.price},-"
+                        val discPrice = (100-(item.product.discount)) * item.product.price / 100
                         Log.d(TAG, "disc price: $discPrice")
                         tvPricediscproduct.text = "Rp $discPrice,-"
                     }
                 }
 
+                btnBuyProduct.setOnClickListener {
+                    item.amount++
+                    tvAmountProduct.text = item.amount.toString()
+                    tvAmountProduct.visibility = View.VISIBLE
+                    indexProduct = adapterPosition
+                    item.product.let { it -> listener.onItemPurchased(it, indexProduct, item.amount) }
+//                    item.let { it -> listener.addItemtoList(it) }
+                }
+
                 root.setOnClickListener {
-                    item.let { it -> listener.onItemClicked(it) }
+                    item.product.let { it -> listener.onItemClicked(it, indexProduct) }
                 }
             }
         }
