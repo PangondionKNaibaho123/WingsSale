@@ -46,6 +46,9 @@ class ListProductActivity : AppCompatActivity() {
         deliveredUser = intent.getStringExtra(EXTRA_USER) as String
         listProductViewModel = ViewModelProvider(this)[ListProductViewModel::class.java]
         transactionDetailViewModel = ViewModelProvider(this)[TransactionDetailViewModel::class.java]
+
+        arrListProductnAmount = ArrayList()
+
         setUpView()
     }
 
