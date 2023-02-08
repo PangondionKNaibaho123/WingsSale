@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.pangondionkn.wingssale.databinding.ActivityCheckoutBinding
 import com.pangondionkn.wingssale.model.data_class.TransactionDetail
 import com.pangondionkn.wingssale.view.adapter.ListCheckoutAdapter
+import com.pangondionkn.wingssale.view.extension.Extension.NUMBERING_FORMAT.Companion.formatThousandSeparator
 import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
 import com.pangondionkn.wingssale.viewmodel.TransactionDetailViewModel
 
@@ -52,17 +53,14 @@ class CheckoutActivity : AppCompatActivity() {
 
         transactionDetailViewModel.getListTransactionDetail()!!.observe(this){listTransaction ->
             Log.d(TAG, "listTransaction : $listTransaction")
-//            listTransaction.forEach {
-//                arrListTransaction.addAll(listOf(it))
-//            }
             val adapter = ListCheckoutAdapter(listTransaction, listProductViewModel)
 
             binding.rvListPurchaseProduct.adapter = adapter
+
+            val totalSubTotal = transactionDetailViewModel.getTotalPurchase(listTransaction)
+            binding.tvTotalPricePurchase.text = "Rp ${totalSubTotal.formatThousandSeparator()},-"
         }
 
-//        Log.d(TAG, "arrListTransaction : $arrListTransaction")
-//
-//        val adapter = ListCheckoutAdapter(arrListTransaction, listProductViewModel)
 
         with(binding){
             btnConfirmPurchase.setOnClickListener {
@@ -71,8 +69,14 @@ class CheckoutActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        transactionDetailViewModel.removeAllTransactionDetail()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        transactionDetailViewModel.removeAllTransactionDetail()
     }
 }

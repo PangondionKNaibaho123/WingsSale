@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pangondionkn.wingssale.R
 import com.pangondionkn.wingssale.databinding.RvItemcheckoutBinding
 import com.pangondionkn.wingssale.model.data_class.TransactionDetail
+import com.pangondionkn.wingssale.view.extension.Extension.NUMBERING_FORMAT.Companion.formatThousandSeparator
 import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
 import com.pangondionkn.wingssale.viewmodel.TransactionDetailViewModel
 
@@ -25,7 +26,7 @@ class ListCheckoutAdapter(
             binding.apply {
                 tvNamePurchased.text = listProductViewModel.getProductName(item.product_code)
                 tvAmountPurchased.text = item.quantity.toString()
-                tvSubTotalPrice.text = "Rp ${item.sub_total},-"
+                tvSubTotalPrice.text = "Rp ${item.sub_total.formatThousandSeparator()},-"
                 tvUnitPurchased.text = item.unit
             }
         }

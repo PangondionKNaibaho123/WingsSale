@@ -47,4 +47,7 @@ interface TransactionDetailDao{
 
     @Query("SELECT * FROM `Transaction Detail`")
     fun getListTransactionDetail(): LiveData<List<TransactionDetail>>
+
+    @Query("DELETE FROM `Transaction Detail`")
+    fun removeAllTransactionDetail()
 }

@@ -24,4 +24,15 @@ class TransactionDetailViewModel(application: Application): AndroidViewModel(app
     }
 
     fun getListTransactionDetail(): LiveData<List<TransactionDetail>>? = transactionDetailDao?.getListTransactionDetail()
+
+    fun getTotalPurchase(listTransactionDetail: List<TransactionDetail>): Int{
+        var result = 0
+        for(i in 0..listTransactionDetail.size-1){
+            result+=listTransactionDetail.get(i).sub_total
+        }
+
+        return result
+    }
+
+    fun removeAllTransactionDetail() = transactionDetailDao?.removeAllTransactionDetail()
 }

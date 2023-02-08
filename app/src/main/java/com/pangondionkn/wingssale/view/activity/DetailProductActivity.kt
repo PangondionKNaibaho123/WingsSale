@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.pangondionkn.wingssale.databinding.ActivityDetailProductBinding
 import com.pangondionkn.wingssale.model.data_class.Login
 import com.pangondionkn.wingssale.model.data_class.Product
+import com.pangondionkn.wingssale.view.extension.Extension.NUMBERING_FORMAT.Companion.formatThousandSeparator
 
 class DetailProductActivity : AppCompatActivity() {
     private val TAG = DetailProductActivity::class.java.simpleName
@@ -46,11 +47,11 @@ class DetailProductActivity : AppCompatActivity() {
 
             when(deliveredProduct.discount == 0){
                 true ->{
-                    tvPriceProduct.text = "Rp ${deliveredProduct.price},-"
+                    tvPriceProduct.text = "Rp ${deliveredProduct.price.formatThousandSeparator()},-"
                 }
                 false ->{
                     val discPrice = (100-(deliveredProduct.discount)) * deliveredProduct.price / 100
-                    tvPriceProduct.text = "Rp $discPrice,-"
+                    tvPriceProduct.text = "Rp ${discPrice.formatThousandSeparator()},-"
                 }
             }
         }

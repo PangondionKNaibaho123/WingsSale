@@ -10,7 +10,7 @@ import com.pangondionkn.wingssale.R
 import com.pangondionkn.wingssale.databinding.RvItemproductBinding
 import com.pangondionkn.wingssale.model.data_class.Product
 import com.pangondionkn.wingssale.model.data_class.ProductnAmount
-import com.pangondionkn.wingssale.view.activity.ListProductActivity
+import com.pangondionkn.wingssale.view.extension.Extension.NUMBERING_FORMAT.Companion.formatThousandSeparator
 
 class ListProductAdapter(
     var data: ArrayList<ProductnAmount>?= null,
@@ -53,14 +53,14 @@ class ListProductAdapter(
                 when(item.product.discount == 0){
                     true ->{
                         tvPricerealproduct.visibility = View.GONE
-                        tvPricediscproduct.text = "Rp ${item.product.price},-"
+                        tvPricediscproduct.text = "Rp ${item.product.price.formatThousandSeparator()},-"
                     }
                     else ->{
                         tvPricerealproduct.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                         tvPricerealproduct.text = "Rp ${item.product.price},-"
                         val discPrice = (100-(item.product.discount)) * item.product.price / 100
                         Log.d(TAG, "disc price: $discPrice")
-                        tvPricediscproduct.text = "Rp $discPrice,-"
+                        tvPricediscproduct.text = "Rp ${discPrice.formatThousandSeparator()},-"
                     }
                 }
 
