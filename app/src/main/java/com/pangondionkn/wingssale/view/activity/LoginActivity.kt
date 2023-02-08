@@ -9,6 +9,8 @@ import com.pangondionkn.wingssale.databinding.ActivityLoginBinding
 import com.pangondionkn.wingssale.model.data_class.Login
 import com.pangondionkn.wingssale.model.data_dummy.Dummy_Data.getDummyUser
 import com.pangondionkn.wingssale.model.data_dummy.Dummy_Data.getListDummyProduct
+import com.pangondionkn.wingssale.view.custom_ui.PopUpDialogListener
+import com.pangondionkn.wingssale.view.custom_ui.showPopupDialog
 import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
 import com.pangondionkn.wingssale.viewmodel.LoginViewModel
 import kotlin.math.log
@@ -60,6 +62,14 @@ class LoginActivity : AppCompatActivity() {
                 }
                 else -> {
                     Log.d(TAG, "Login Gagal")
+                    this@LoginActivity.showPopupDialog(
+                        getString(R.string.login_failed_desc),
+                        object : PopUpDialogListener{
+                            override fun onClickPopUpListener() {
+                                closeOptionsMenu()
+                            }
+                        }
+                    )
                 }
             }
         }
