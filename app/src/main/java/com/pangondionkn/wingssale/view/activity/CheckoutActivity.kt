@@ -8,22 +8,33 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pangondionkn.wingssale.R
 import com.pangondionkn.wingssale.databinding.ActivityCheckoutBinding
 import com.pangondionkn.wingssale.model.data_class.TransactionDetail
+import com.pangondionkn.wingssale.model.data_class.TransactionHeader
 import com.pangondionkn.wingssale.view.adapter.ListCheckoutAdapter
+import com.pangondionkn.wingssale.view.custom_ui.PopUpDialogListener
+import com.pangondionkn.wingssale.view.custom_ui.showPopupDialog
 import com.pangondionkn.wingssale.view.extension.Extension.NUMBERING_FORMAT.Companion.formatThousandSeparator
+import com.pangondionkn.wingssale.view.extension.Extension.TIME.Companion.getCurrentDateTime
+import com.pangondionkn.wingssale.viewmodel.CheckoutViewModel
 import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
 import com.pangondionkn.wingssale.viewmodel.TransactionDetailViewModel
+import java.text.SimpleDateFormat
 
 class CheckoutActivity : AppCompatActivity() {
     private val TAG = CheckoutActivity::class.java.simpleName
     private var _binding : ActivityCheckoutBinding?= null
     private val binding get() = _binding!!
     private lateinit var deliveredUser: String
-    private var arrListTransaction = ArrayList<TransactionDetail>()
+    private var arrListTransactionHeader = ArrayList<TransactionHeader>()
+    private var listTransactionDetail = ArrayList<TransactionDetail>()
+    private lateinit var dateToday: String
+    private var totalSubTotal: Int = 0
 
     private lateinit var transactionDetailViewModel: TransactionDetailViewModel
     private lateinit var listProductViewModel: ListProductViewModel
+    private lateinit var checkoutViewModel: CheckoutViewModel
 
     companion object{
         const val EXTRA_USER = "EXTRA_USER"
@@ -39,8 +50,12 @@ class CheckoutActivity : AppCompatActivity() {
 
         transactionDetailViewModel = ViewModelProvider(this)[TransactionDetailViewModel::class.java]
         listProductViewModel = ViewModelProvider(this)[ListProductViewModel::class.java]
+        checkoutViewModel = ViewModelProvider(this)[CheckoutViewModel::class.java]
 
         deliveredUser = intent.getStringExtra(EXTRA_USER) as String
+
+        val formatDate = SimpleDateFormat("dd-MM-yyyy")
+        dateToday = formatDate.format(getCurrentDateTime())
 
         setUpView()
     }
@@ -53,18 +68,49 @@ class CheckoutActivity : AppCompatActivity() {
 
         transactionDetailViewModel.getListTransactionDetail()!!.observe(this){listTransaction ->
             Log.d(TAG, "listTransaction : $listTransaction")
-            val adapter = ListCheckoutAdapter(listTransaction, listProductViewModel)
 
+            listTransaction.forEach {
+                listTransactionDetail.addAll(listOf(it))
+            }
+
+            val adapter = ListCheckoutAdapter(listTransaction, listProductViewModel)
             binding.rvListPurchaseProduct.adapter = adapter
 
-            val totalSubTotal = transactionDetailViewModel.getTotalPurchase(listTransaction)
+            totalSubTotal = transactionDetailViewModel.getTotalPurchase(listTransactionDetail)
             binding.tvTotalPricePurchase.text = "Rp ${totalSubTotal.formatThousandSeparator()},-"
+
         }
 
 
         with(binding){
+//            val adapter = ListCheckoutAdapter(listTransactionDetail, listProductViewModel)
+//            rvListPurchaseProduct.adapter = adapter
+
+//            val totalSubTotal = transactionDetailViewModel.getTotalPurchase(listTransactionDetail)
+//            tvTotalPricePurchase.text = "Rp ${totalSubTotal.formatThousandSeparator()},-"
+
             btnConfirmPurchase.setOnClickListener {
-                Toast.makeText(this@CheckoutActivity, "Confirm Checkout", Toast.LENGTH_SHORT).show()
+                listTransactionDetail.forEach {
+                    var transactionHeader = TransactionHeader(
+                        document_code = it.document_code,
+                        document_number = it.document_number,
+                        user = deliveredUser,
+                        total = totalSubTotal,
+                        date = dateToday
+                    )
+
+                    arrListTransactionHeader.add(transactionHeader)
+                }
+
+                //Add to Transaction header database
+                checkoutViewModel.addListTransactionHeader(arrListTransactionHeader)
+
+                this@CheckoutActivity.showPopupDialog(getString(R.string.checkout_success), object :
+                    PopUpDialogListener {
+                    override fun onClickPopUpListener() {
+                        closeOptionsMenu()
+                    }
+                })
             }
         }
     }

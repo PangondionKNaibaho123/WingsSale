@@ -19,4 +19,5 @@
     <string name="tv_subtotalTitle">Sub Total :</string>
     <string name="dummy_warning">This is Dummy Warning. Please Pay attention</string>
     <string name="warning_checkout_product">Please buy something before you proceed to Checkout</string>
+    <string name="checkout_success">Checkout Success !</string>
 </resources>

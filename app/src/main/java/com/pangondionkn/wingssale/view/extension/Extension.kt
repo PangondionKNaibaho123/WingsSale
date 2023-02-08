@@ -1,5 +1,7 @@
 package com.pangondionkn.wingssale.view.extension
 
+import java.util.*
+
 class Extension {
     interface NUMBERING_FORMAT{
         companion object{
@@ -9,6 +11,14 @@ class Extension {
                     .chunked(3)
                     .joinToString(".")
                     .reversed()
+            }
+        }
+    }
+
+    interface TIME{
+        companion object{
+            fun getCurrentDateTime(): Date {
+                return Calendar.getInstance().time
             }
         }
     }

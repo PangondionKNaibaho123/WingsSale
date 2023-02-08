@@ -8,6 +8,7 @@ import androidx.room.Query
 import com.pangondionkn.wingssale.model.data_class.Login
 import com.pangondionkn.wingssale.model.data_class.Product
 import com.pangondionkn.wingssale.model.data_class.TransactionDetail
+import com.pangondionkn.wingssale.model.data_class.TransactionHeader
 
 @Dao
 interface LoginDao {
@@ -36,8 +37,10 @@ interface ProductDao{
     fun removeAllProduct()
 }
 
+@Dao
 interface TransactionHeaderDao{
-
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addTransactionHeader(listTransactionHeader: ArrayList<TransactionHeader>)
 }
 
 @Dao

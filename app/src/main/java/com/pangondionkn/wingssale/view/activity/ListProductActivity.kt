@@ -15,8 +15,10 @@ import com.pangondionkn.wingssale.model.data_class.TransactionDetail
 import com.pangondionkn.wingssale.view.adapter.ListProductAdapter
 import com.pangondionkn.wingssale.view.custom_ui.PopUpDialogListener
 import com.pangondionkn.wingssale.view.custom_ui.showPopupDialog
+import com.pangondionkn.wingssale.view.extension.Extension.TIME.Companion.getCurrentDateTime
 import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
 import com.pangondionkn.wingssale.viewmodel.TransactionDetailViewModel
+import java.text.SimpleDateFormat
 
 class ListProductActivity : AppCompatActivity() {
     private val TAG = ListProductActivity::class.java.simpleName
@@ -81,10 +83,14 @@ class ListProductActivity : AppCompatActivity() {
                             (100-(item.discount)) * item.price / 100
                         }
                     }
+                    val formatDate = SimpleDateFormat("ddMMyyyy")
+                    val number = formatDate.format(getCurrentDateTime())
+
+
                     val transactionDetail_e1 =
                         TransactionDetail(
                             document_code = "TRX",
-                            document_number = "00${index+1}",
+                            document_number = number,
                             product_code = item.product_code,
                             price = realPrice,
                             quantity = amount,

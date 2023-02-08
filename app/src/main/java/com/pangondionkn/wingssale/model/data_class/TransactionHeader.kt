@@ -3,6 +3,7 @@ package com.pangondionkn.wingssale.model.data_class
 import android.os.Parcelable
 import androidx.annotation.Size
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import java.sql.Date
 import com.google.gson.annotations.SerializedName
@@ -20,6 +21,7 @@ data class TransactionHeader(
 
     @field:SerializedName("User")
     @field:Size(max = 50L)
+    @PrimaryKey(autoGenerate = false)
     var user: String = "",
 
     @field:SerializedName("Total")
@@ -28,5 +30,5 @@ data class TransactionHeader(
 
     @field:SerializedName("Date")
     @field:Size(max = 10L)
-    var date: Date ?= null,
+    var date: String,
 ): Parcelable
