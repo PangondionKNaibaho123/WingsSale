@@ -17,4 +17,6 @@
     <string name="dummy_prodamount">Z</string>
     <string name="btntext_confirm_purchase">CONFIRM</string>
     <string name="tv_subtotalTitle">Sub Total :</string>
+    <string name="dummy_warning">This is Dummy Warning. Please Pay attention</string>
+    <string name="warning_checkout_product">Please buy something before you proceed to Checkout</string>
 </resources>

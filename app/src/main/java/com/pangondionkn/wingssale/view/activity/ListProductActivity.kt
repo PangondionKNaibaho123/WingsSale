@@ -7,11 +7,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pangondionkn.wingssale.R
 import com.pangondionkn.wingssale.databinding.ActivityListProductBinding
 import com.pangondionkn.wingssale.model.data_class.Product
 import com.pangondionkn.wingssale.model.data_class.ProductnAmount
 import com.pangondionkn.wingssale.model.data_class.TransactionDetail
 import com.pangondionkn.wingssale.view.adapter.ListProductAdapter
+import com.pangondionkn.wingssale.view.custom_ui.PopUpDialogListener
+import com.pangondionkn.wingssale.view.custom_ui.showPopupDialog
 import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
 import com.pangondionkn.wingssale.viewmodel.TransactionDetailViewModel
 
@@ -108,10 +111,21 @@ class ListProductActivity : AppCompatActivity() {
                 rvListProduct.adapter = adapter
 
                 binding.btnCheckoutProduct.setOnClickListener {
-                    transactionDetailViewModel.addListTransactionDetail(listPurchasedProducts)
-                    startActivity(
-                        CheckoutActivity.newIntent(this@ListProductActivity, deliveredUser)
-                    )
+                    when(listPurchasedProducts.size == 0){
+                        true ->{
+                            this@ListProductActivity.showPopupDialog(getString(R.string.warning_checkout_product), object : PopUpDialogListener{
+                                override fun onClickPopUpListener() {
+                                    closeOptionsMenu()
+                                }
+                            })
+                        }
+                        else ->{
+                            transactionDetailViewModel.addListTransactionDetail(listPurchasedProducts)
+                            startActivity(
+                                CheckoutActivity.newIntent(this@ListProductActivity, deliveredUser)
+                            )
+                        }
+                    }
                 }
             }
         }
