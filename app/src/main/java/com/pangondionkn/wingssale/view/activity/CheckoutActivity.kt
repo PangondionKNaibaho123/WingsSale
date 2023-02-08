@@ -109,6 +109,9 @@ class CheckoutActivity : AppCompatActivity() {
                     PopUpDialogListener {
                     override fun onClickPopUpListener() {
                         closeOptionsMenu()
+                        startActivity(
+                            LoginActivity.newIntent(this@CheckoutActivity)
+                        )
                     }
                 })
             }
