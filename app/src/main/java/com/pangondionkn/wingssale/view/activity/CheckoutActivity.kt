@@ -83,11 +83,6 @@ class CheckoutActivity : AppCompatActivity() {
 
 
         with(binding){
-//            val adapter = ListCheckoutAdapter(listTransactionDetail, listProductViewModel)
-//            rvListPurchaseProduct.adapter = adapter
-
-//            val totalSubTotal = transactionDetailViewModel.getTotalPurchase(listTransactionDetail)
-//            tvTotalPricePurchase.text = "Rp ${totalSubTotal.formatThousandSeparator()},-"
 
             btnConfirmPurchase.setOnClickListener {
                 listTransactionDetail.forEach {
