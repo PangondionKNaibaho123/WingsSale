@@ -4,9 +4,11 @@ import com.pangondionkn.wingssale.model.data_class.Login
 import com.pangondionkn.wingssale.model.data_class.Product
 
 object Dummy_Data {
-    fun getDummyUser(): Login = Login(
-        user = "pangondion",
-        password = "naibahono123"
+
+    fun getListDummyUser(): List<Login> = listOf(
+        Login(user = "Smit", password = "_sm1t_OK"),
+        Login(user = "testLogin1", password = "getLogin123"),
+        Login(user = "testLogin2", password = "getLogin12345")
     )
 
     fun getListDummyProduct(): List<Product> = listOf(
@@ -20,30 +22,30 @@ object Dummy_Data {
             unit = "PCS"
         ),
         Product(
-            product_code = "KCPBNG",
-            product_name = "Kecap Bango",
-            price = 17000,
-            currency = "IDR",
-            discount = 12,
-            dimension = "5 cm x 5 cm x 15cm",
-            unit = "PCS"
-        ),
-        Product(
-            product_code = "ASFFFFASS",
-            product_name = "Nabati Coklat",
-            price = 9000,
+            product_code = "GVBRU",
+            product_name = "Giv Biru",
+            price = 11000,
             currency = "IDR",
             discount = 0,
-            dimension = "10 cm x 15 cm",
+            dimension = "6 cm x 4 cm",
             unit = "PCS"
         ),
         Product(
-            product_code = "NTRBST",
-            product_name = "Nutri Boost",
-            price = 7000,
+            product_code = "SKLNLQD",
+            product_name = "So Klin Liquid",
+            price = 18000,
             currency = "IDR",
-            discount = 12,
-            dimension = "5 cm x 15 cm",
+            discount = 0,
+            dimension = "13 cm x 10 cm",
+            unit = "PCS"
+        ),
+        Product(
+            product_code = "GVKNG",
+            product_name = "Giv Kuning",
+            price = 10000,
+            currency = "IDR",
+            discount = 0,
+            dimension = "6 cm x 4 cm",
             unit = "PCS"
         )
     )

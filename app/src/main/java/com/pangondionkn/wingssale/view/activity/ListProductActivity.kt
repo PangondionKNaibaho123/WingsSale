@@ -146,5 +146,6 @@ class ListProductActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        listProductViewModel.removeAllProduct()
     }
 }

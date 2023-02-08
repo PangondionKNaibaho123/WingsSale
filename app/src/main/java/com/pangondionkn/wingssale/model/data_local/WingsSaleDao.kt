@@ -13,7 +13,7 @@ import com.pangondionkn.wingssale.model.data_class.TransactionHeader
 @Dao
 interface LoginDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addUserLogin(userLogin: Login)
+    fun addListUserLogin(listUserLogin: List<Login>)
 
     @Query("SELECT COUNT(*) FROM Login WHERE user LIKE :deliveredUser AND password LIKE :deliveredPassword")
     fun checkUserLogin(deliveredUser: String, deliveredPassword: String): Int

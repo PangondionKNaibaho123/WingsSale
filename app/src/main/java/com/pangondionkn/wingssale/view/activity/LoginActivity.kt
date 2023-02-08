@@ -8,9 +8,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.pangondionkn.wingssale.R
 import com.pangondionkn.wingssale.databinding.ActivityLoginBinding
-import com.pangondionkn.wingssale.model.data_class.Login
-import com.pangondionkn.wingssale.model.data_dummy.Dummy_Data.getDummyUser
 import com.pangondionkn.wingssale.model.data_dummy.Dummy_Data.getListDummyProduct
+import com.pangondionkn.wingssale.model.data_dummy.Dummy_Data.getListDummyUser
 import com.pangondionkn.wingssale.view.custom_ui.PopUpDialogListener
 import com.pangondionkn.wingssale.view.custom_ui.showPopupDialog
 import com.pangondionkn.wingssale.viewmodel.ListProductViewModel
@@ -45,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun addDummyUser(){
         Log.d(TAG, "Add new User....")
-        loginViewModel.addUserLogin(getDummyUser())
+        loginViewModel.addListUserLogin(getListDummyUser())
     }
 
     private fun setUpLogin(){

@@ -17,15 +17,7 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
         loginDao = loginDB?.loginDao()
     }
 
-    fun addUserLogin(userLogin: Login){
-        CoroutineScope(Dispatchers.IO).launch {
-            val userLogin_ = Login(
-                userLogin.user,
-                userLogin.password
-            )
-            loginDao?.addUserLogin(userLogin_)
-        }
-    }
+    fun addListUserLogin(listUserLogin: List<Login>) = loginDao?.addListUserLogin(listUserLogin)
 
 //    fun checkUserLogin(deliveredUser: String, deliveredPassword: String) = loginDao?.checkUserLogin(deliveredUser, deliveredPassword)
 
